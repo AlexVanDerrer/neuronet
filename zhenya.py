@@ -6,6 +6,12 @@ from fuzzywuzzy import fuzz
 import pyttsx3
 import datetime
  
+
+# for index, name in enumerate(sr.Microphone.list_microphone_names()):
+#     print("Mic - \" {1} \" founf of `Microphone/(device_index={0}`".format(index, name))
+
+
+
 # настройки
 opts = {
     "alias": ('женя','женёк','женёчек','жендос','солнышко','зяюш',
@@ -46,7 +52,7 @@ def callback(recognizer, audio):
  
     except sr.UnknownValueError:
         print("[log] Голос не распознан!")
-    except sr.RequestError as e:
+    except sr.RequestError:
         print("[log] Неизвестная ошибка, проверьте интернет!")
  
 def recognize_cmd(cmd):
@@ -88,14 +94,16 @@ with m as source:
 speak_engine = pyttsx3.init()
  
 # Только если у вас установлены голоса для синтеза речи!
-voices = speak_engine.getProperty('voices')
-speak_engine.setProperty('voice', voices[4].id)
+# voices = speak_engine.getProperty('voices')
+# speak_engine.setProperty('voice', voices[0].id)
  
 # forced cmd test
-speak("Мой разработчик не научил меня анекдотам ... Ха ха ха")
- 
+# speak("Мой разработчик не научил меня анекдотам ... Ха ха ха")
+
+speak("Дрын дын дын кожаные ублюдки. Лучший голосовой помощник Женя версии 2 0 готова решать ваши сраные дела")
+
 # speak("Добрый день, повелитель")
 # speak("Женя слушает")
  
-#stop_listening = r.listen_in_background(m, callback)
-#while True: time.sleep(0.1) # infinity loop
+stop_listening = r.listen_in_background(m, callback)
+while True: time.sleep(0.1) # infinity loop
